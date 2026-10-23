@@ -1,0 +1,57 @@
+# Binaries and executable outputs
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+/bin/
+/dist/
+/build/
+
+# GoLand / JetBrains IDE files
+.idea/
+*.iws
+*.iml
+*.ipr
+cmake-build-*/
+
+# VS Code
+.vscode/
+
+# Environment and secrets (never commit JWT keys or DB credentials)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.cert
+
+# Large AI model weights & heavy datasets
+*.onnx
+*.pt
+*.bin
+*.weights
+*.engine
+/models/*
+!/models/.gitkeep
+
+# Go runtime & test artifacts
+*.prof
+*.pprof
+trace.out
+coverage.txt
+coverage.html
+
+# Operating System files
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# Temporary / scratch files
+tmp/
+temp/
+*.log
