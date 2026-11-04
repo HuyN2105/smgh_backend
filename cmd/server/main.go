@@ -78,4 +78,12 @@ func main() {
 	shutdownCtx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	_ = srv.Shutdown(shutdownCtx)
+
+	// DashboardHub
+	dashHub := handler.NewDashboardHub()
+	go dashHub.Run()
+
+	// Đăng ký endpoint WebSocket cho Web Dashboard
+	dashHandler := handler.NewDashboardHandler(dashHub)
+	http.HandleFunc("/ws/dashboard", dashHandler.ServeWS)
 }
