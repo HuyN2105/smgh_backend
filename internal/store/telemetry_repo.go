@@ -1,3 +1,9 @@
+//
+// Created by HuyN on 2026/10/17.
+// Description: Tầng truy xuất dữ liệu (Repository) cho collection telemetry; thực hiện ghi hàng loạt (InsertMany)
+// và truy vấn lịch sử bản ghi cảm biến theo từng thiết bị.
+//
+
 package store
 
 import (

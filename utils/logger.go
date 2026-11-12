@@ -1,3 +1,9 @@
+//
+// Created by HuyN on 2026/10/17.
+// Description: Cung cấp các hàm ghi log chuẩn hóa kèm nhãn mức độ (INFO, WARN, ERROR) và dấu thời gian thống nhất
+// phục vụ theo dõi vận hành trên server.
+//
+
 package utils
 
 import "time"

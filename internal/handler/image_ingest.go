@@ -1,3 +1,9 @@
+//
+// Created by HuyN on 2026/10/17.
+// Description: Tiếp nhận luồng dữ liệu hình ảnh cây trồng từ thiết bị qua HTTP POST, kiểm soát giới hạn dung lượng
+// và chuyển tiếp trực tiếp sang AI Server thông qua upstream client.
+//
+
 package handler
 
 import (
@@ -39,7 +45,13 @@ func (h *ImageHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "AI server unreachable: "+err.Error(), statusCode)
 		return
 	}
-	defer aiBody.Close()
+	defer func(aiBody io.ReadCloser) {
+		err := aiBody.Close()
+		if err != nil {
+			http.Error(w, "Failed to close AI response body", http.StatusInternalServerError)
+			return
+		}
+	}(aiBody)
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(statusCode)

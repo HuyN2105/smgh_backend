@@ -1,6 +1,8 @@
-// Created by HuyN on 2026/11/04.
-// File sensor_ws.go xử lý nâng cấp kết nối WebSocket cho thiết bị IoT, xác thực JWT token
-// và đọc luồng dữ liệu cảm biến đẩy vào Telemetry Hub.
+//
+// Created by HuyN on 2026/10/17.
+// Description: Xử lý nâng cấp kết nối WebSocket cho thiết bị IoT (/ws/sensors), xác thực token qua query param,
+// gán device_id chống giả mạo và đẩy dữ liệu cảm biến vào Telemetry Hub.
+//
 
 package handler
 

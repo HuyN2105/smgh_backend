@@ -1,3 +1,9 @@
+//
+// Created by HuyN on 2026/10/17.
+// Description: Nạp và quản lý các biến môi trường hệ thống (Port, MongoDB URI, JWT Secret, AI Server URL)
+// từ file .env cục bộ hoặc biến môi trường runtime của nền tảng cloud.
+//
+
 package config
 
 import (

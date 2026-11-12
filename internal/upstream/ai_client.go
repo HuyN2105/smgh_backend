@@ -1,3 +1,9 @@
+//
+// Created by HuyN on 2026/10/17.
+// Description: HTTP Client chuyên trách giao tiếp với AI Server bên ngoài, đóng gói dữ liệu nhị phân/multipart
+// và nhận phản hồi phân tích chẩn đoán bệnh cây trồng.
+//
+
 package upstream
 
 import (

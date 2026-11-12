@@ -1,3 +1,8 @@
+//
+// Created by HuyN on 2026/10/17.
+// Description: Khởi tạo, kiểm tra kết nối (ping) và quản lý vòng đời của MongoDB Client tới cụm MongoDB Atlas.
+//
+
 package store
 
 import (

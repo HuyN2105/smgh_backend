@@ -1,3 +1,9 @@
+//
+// Created by HuyN on 2026/11/12.
+// Description: Cung cấp các endpoint HTTP REST phục vụ truy vấn dữ liệu lịch sử cảm biến cho biểu đồ
+// và đăng ký mới thiết bị kèm cấp phát JWT token.
+//
+
 package handler
 
 import (

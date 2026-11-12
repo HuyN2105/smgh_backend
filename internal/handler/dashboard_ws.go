@@ -1,3 +1,9 @@
+//
+// Created by HuyN on 2026/10/17.
+// Description: Quản lý DashboardHub và endpoint WebSocket (/ws/dashboard) để phân phối (broadcast)
+// luồng dữ liệu cảm biến thời gian thực trực tiếp tới giao diện Next.js.
+//
+
 package handler
 
 import (
@@ -118,7 +124,10 @@ func (h *DashboardHandler) ServeWS(w http.ResponseWriter, r *http.Request) {
 func (c *Client) readPump() {
 	defer func() {
 		c.hub.unregister <- c
-		c.conn.Close()
+		err := c.conn.Close()
+		if err != nil {
+			return
+		}
 	}()
 
 	c.conn.SetReadLimit(512)
@@ -140,7 +149,10 @@ func (c *Client) writePump() {
 	ticker := time.NewTicker(30 * time.Second)
 	defer func() {
 		ticker.Stop()
-		c.conn.Close()
+		err := c.conn.Close()
+		if err != nil {
+			return
+		}
 	}()
 
 	for {

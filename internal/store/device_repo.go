@@ -1,3 +1,9 @@
+//
+// Created by HuyN on 2026/10/17.
+// Description: Quản lý thông tin định danh các nút cảm biến (IoT nodes) trong MongoDB và sinh mã JWT token
+// thời hạn dài để nạp cho vi điều khiển.
+//
+
 package store
 
 import (
@@ -21,9 +27,9 @@ type DeviceRepo struct {
 	jwtSecret []byte
 }
 
-func NewDeviceRepo(db *mongo.Database, jwtSecret []byte) *DeviceRepo {
+func NewDeviceRepo(m *DB, jwtSecret []byte) *DeviceRepo {
 	return &DeviceRepo{
-		coll:      db.Collection("devices"),
+		coll:      m.client.Database(m.Name).Collection("devices"),
 		jwtSecret: jwtSecret,
 	}
 }

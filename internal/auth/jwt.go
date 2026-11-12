@@ -1,3 +1,9 @@
+//
+// Created by HuyN on 2026/10/17.
+// Description: Định nghĩa cấu trúc DeviceClaims và TokenValidator thực hiện kiểm tra chữ ký HMAC-SHA256,
+// thời hạn token (exp) và trích xuất định danh thiết bị không trạng thái (stateless JWT).
+//
+
 package auth
 
 import (
