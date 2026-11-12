@@ -67,3 +67,29 @@ func (r *TelemetryRepo) InsertBatch(ctx context.Context, readings []telemetry.Se
 	_, err := r.coll.InsertMany(ctx, docs, options.InsertMany().SetOrdered(false))
 	return err
 }
+
+// GetRecentByDevice lấy danh sách N bản ghi mới nhất của một thiết bị
+func (r *TelemetryRepo) GetRecentByDevice(ctx context.Context, deviceID string, limit int64) ([]bson.M, error) {
+	filter := bson.M{"device_id": deviceID}
+	opts := options.Find().
+		SetSort(bson.D{{Key: "timestamp", Value: -1}}). // Sắp xếp mới nhất lên đầu
+		SetLimit(limit)
+
+	cursor, err := r.coll.Find(ctx, filter, opts)
+	if err != nil {
+		return nil, err
+	}
+	defer func(cursor *mongo.Cursor, ctx context.Context) {
+		err := cursor.Close(ctx)
+		if err != nil {
+			return
+		}
+	}(cursor, ctx)
+
+	var results []bson.M
+	if err := cursor.All(ctx, &results); err != nil {
+		return nil, err
+	}
+
+	return results, nil
+}

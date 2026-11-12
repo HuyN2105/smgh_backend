@@ -1,3 +1,9 @@
+// Created by HuyN on 2026/11/04.
+// File hub.go quản lý bộ đệm dữ liệu cảm biến trong bộ nhớ (in-memory channel buffer),
+// gom mẻ dữ liệu theo chu kỳ để ghi hàng loạt vào MongoDB và phân phối tới dashboard.
+
+// Package telemetry cung cấp các thành phần tiếp nhận, đệm và định tuyến dữ liệu cảm biến thời gian thực.
+
 package telemetry
 
 import (

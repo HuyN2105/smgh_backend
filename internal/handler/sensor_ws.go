@@ -1,3 +1,7 @@
+// Created by HuyN on 2026/11/04.
+// File sensor_ws.go xử lý nâng cấp kết nối WebSocket cho thiết bị IoT, xác thực JWT token
+// và đọc luồng dữ liệu cảm biến đẩy vào Telemetry Hub.
+
 package handler
 
 import (
@@ -34,9 +38,16 @@ func HandleSensorWS(hub *telemetry.Hub, validator *auth.TokenValidator) http.Han
 
 		conn, err := upgrader.Upgrade(w, r, nil)
 		if err != nil {
+			http.Error(w, "Failed to upgrade connection", http.StatusInternalServerError)
 			return
 		}
-		defer conn.Close()
+		defer func(conn *websocket.Conn) {
+			err := conn.Close()
+			if err != nil {
+				http.Error(w, "Failed to close connection", http.StatusInternalServerError)
+				return
+			}
+		}(conn)
 
 		conn.SetReadLimit(4096) // Limit the size of incoming messages to 4KB
 		_ = conn.SetReadDeadline(time.Now().Add(60 * time.Second))
